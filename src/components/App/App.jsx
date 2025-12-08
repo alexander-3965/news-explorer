@@ -11,6 +11,7 @@ import RegisterModal from "../Modals/RegisterModal";
 import SignInModal from "../Modals/SigninModal";
 import SuccessfulRegistrationModal from "../Modals/SuccesfulRegistrationModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import About from "../About/about";
 
 function App() {
   const [activeModal, setActiveModal] = useState(" ");
@@ -121,6 +122,7 @@ function App() {
               />
             </Routes>
           </div>
+          <About />
 
           <RegisterModal
             onCloseModal={closeActiveModal}

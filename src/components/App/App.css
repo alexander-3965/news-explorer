@@ -5,7 +5,7 @@
   font-size: 16px;
   color: #000;
   line-height: 1;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .page__content {
@@ -13,7 +13,7 @@
 }
 
 .page__top-section {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 0;
@@ -23,7 +23,7 @@
 
 .page__top-section::before {
   content: "";
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
