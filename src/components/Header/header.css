@@ -63,6 +63,7 @@
   border-radius: 100px;
   border: solid 1px #fff;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .header__username {

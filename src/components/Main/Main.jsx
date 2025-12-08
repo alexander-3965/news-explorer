@@ -1,9 +1,11 @@
+import React from "react";
+import "./Main.css";
+import SearchForm from "../SearchForm/searchForm";
+
 function Main() {
   return (
-    <main>
-      <section className="cards">
-        <p className="cards__text">You may want to wear:</p>
-      </section>
+    <main className="main">
+      <SearchForm />
     </main>
   );
 }

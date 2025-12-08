@@ -13,8 +13,31 @@
 }
 
 .page__top-section {
-  background-image: url("../../assets/NE-top-section-bg.jpg");
-  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
   max-height: 576px;
   width: 100%;
+}
+
+.page__top-section::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 576px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+  display: block;
+  background-image: url("../../assets/NE-top-section-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  -webkit-filter: brightness(70%);
+  -moz-filter: brightness(70%);
+  -o-filter: brightness(70%);
+  -ms-filter: brightness(70%);
+  filter: brightness(70%);
 }
