@@ -1,0 +1,56 @@
+import "./header.css";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import Navigation from "../Navigation/navigation.jsx";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import logoutIcon from "../../assets/logout.svg";
+import logoutIconWhite from "../../assets/logout-white.svg";
+
+function Header({
+  isLoggedIn,
+  handleSignUpClick,
+  handleLogoutClick,
+  handleLogInClick,
+}) {
+  const currentUser = useContext(CurrentUserContext);
+
+  return (
+    <header className="header">
+      <Link to="/" className="header__logo header__logo_link">
+        <p className="header__logo"> NewsExplorer </p>
+      </Link>
+
+      <div className="header__user-container">
+        <Navigation isLoggedIn={isLoggedIn} />
+        {!isLoggedIn && (
+          <div>
+            <button
+              // onClick={handleSignUpClick} --- will implement later ---
+              onClick={handleLogInClick}
+              className="header__sign-in-button"
+              type="button"
+            >
+              Sign In
+            </button>
+          </div>
+        )}
+        {isLoggedIn && (
+          <button
+            onClick={handleLogoutClick}
+            type="button"
+            className="header__logout-button"
+          >
+            <p className="header__username">{currentUser.name}</p>
+            <img
+              src={logoutIconWhite}
+              alt="Logout Icon"
+              className="header__logout-icon"
+            />
+          </button>
+        )}
+      </div>
+    </header>
+  );
+}
+
+export default Header;

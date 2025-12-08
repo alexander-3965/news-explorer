@@ -1,0 +1,20 @@
+.page {
+  background-color: #f3f3f3;
+  min-height: 100vh;
+  font-family: "roboto-slab", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #000;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.page__content {
+  margin: 0 auto;
+}
+
+.page__top-section {
+  background-image: url("../../assets/NE-top-section-bg.jpg");
+  background-size: cover;
+  max-height: 576px;
+  width: 100%;
+}
