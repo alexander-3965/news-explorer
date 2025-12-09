@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-around;
   margin: 80px 104px;
+  gap: 56px;
+  max-height: 624px;
 }
 
 .about-section__content {
@@ -26,4 +28,5 @@
   max-height: 464px;
   border-radius: 50%;
   width: 100%;
+  aspect-ratio: 1 / 1;
 }

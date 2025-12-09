@@ -14,9 +14,14 @@ function Footer() {
         <Link to="/" className="footer__link">
           <p className="footer__link footer__link_home"> Home </p>
         </Link>
-        <Link to="/saved-news" className="footer__link">
+        <a
+          href="https://tripleten.com"
+          target="_blank"
+          rel="noreferrer"
+          className="footer__link"
+        >
           <p className="footer__link footer__link_tripleten"> Tripleten </p>
-        </Link>
+        </a>
         <div className="footer__socials-container">
           <a
             href="https://github.com/alexander-3965"
