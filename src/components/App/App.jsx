@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import "./App.css";
-import Header from "../Header/header";
+import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import SavedNews from "../SavedNews/savedNews";
+import SavedNews from "../SavedNews/SavedNews";
 import ProtectedRoute from "../ProtectedRoute";
 import RegisterModal from "../Modals/RegisterModal";
 import SignInModal from "../Modals/SigninModal";
 import SuccessfulRegistrationModal from "../Modals/SuccesfulRegistrationModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import About from "../About/about";
+import About from "../About/About";
 
 function App() {
   const [activeModal, setActiveModal] = useState(" ");

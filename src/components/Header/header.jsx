@@ -1,8 +1,8 @@
 import "./header.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import Navigation from "../Navigation/navigation.jsx";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import Navigation from "../Navigation/Navigation";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import logoutIcon from "../../assets/logout.svg";
 import logoutIconWhite from "../../assets/logout-white.svg";
 
