@@ -98,7 +98,7 @@ function App() {
 
     return getNews(keyword, apiKey).then(({ articles }) => {
       const processedNews = processNewsData(articles);
-      setNewsArr(processedNews);
+      setNewsArr(processedNews).catch((err) => console.error(err));
     });
   };
 
