@@ -107,7 +107,6 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__content">
-          {/* <div className="page__top-section"> */}
           <Header
             isLoggedIn={isLoggedIn}
             handleSignUpClick={handleSignUpClick}
@@ -147,7 +146,6 @@ function App() {
               }
             />
           </Routes>
-          {/* </div> */}
 
           <RegisterModal
             onCloseModal={closeActiveModal}
