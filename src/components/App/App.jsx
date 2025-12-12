@@ -20,6 +20,7 @@ function App() {
     name: "Alex",
   });
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [newsCount, setNewsCount] = useState(3);
 
   const navigate = useNavigate();
 
@@ -86,43 +87,55 @@ function App() {
     setActiveModal("");
   };
 
+  const handleShowMoreClick = () => {
+    setNewsCount(newsCount + 3);
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__content">
-          <div className="page__top-section">
-            <Header
-              isLoggedIn={isLoggedIn}
-              handleSignUpClick={handleSignUpClick}
-              handleLogInClick={handleLogInClick}
-              handleLogoutClick={handleLogoutClick}
+          {/* <div className="page__top-section"> */}
+          <Header
+            isLoggedIn={isLoggedIn}
+            handleSignUpClick={handleSignUpClick}
+            handleLogInClick={handleLogInClick}
+            handleLogoutClick={handleLogoutClick}
+          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  isLoggedIn={isLoggedIn}
+                  handleShowMoreClick={handleShowMoreClick}
+                  newsCount={newsCount}
+                />
+              }
             />
-            <Routes>
-              <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
-              <Route
-                path="/saved-news"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <SavedNews
-                      isLoggedIn={isLoggedIn}
-                      handleLogoutClick={handleLogoutClick}
-                    />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="*"
-                element={
-                  isLoggedIn ? (
-                    <Navigate to="/saved-news" replace />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
-                }
-              />
-            </Routes>
-          </div>
-          <About />
+            <Route
+              path="/saved-news"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <SavedNews
+                    isLoggedIn={isLoggedIn}
+                    handleLogoutClick={handleLogoutClick}
+                  />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/saved-news" replace />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+          </Routes>
+          {/* </div> */}
 
           <RegisterModal
             onCloseModal={closeActiveModal}

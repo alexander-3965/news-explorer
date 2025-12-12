@@ -1,8 +1,14 @@
 import "./searchForm.css";
+import backgroundImage from "../../assets/NE-top-section-bg.jpg";
 
 function SearchForm() {
   return (
     <section className="search-form">
+      <img
+        src={backgroundImage}
+        alt="backgroundImage"
+        className="search-form__background"
+      />
       <div className="search-form__content">
         <h1 className="search-form__title">What's going on in the world?</h1>
         <p className="search-form__subtitle">

@@ -6,6 +6,8 @@
   box-sizing: border-box;
   justify-content: space-between;
   border-bottom: solid 1px #ffffff33;
+  position: relative;
+  z-index: 1;
 }
 
 .header__logo {
@@ -22,6 +24,7 @@
 
 .header__logo_link {
   text-decoration: none;
+  z-index: 1;
 }
 
 .header__date-location {
