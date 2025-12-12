@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  z-index: 5;
 }
 
 .modal_opened {
@@ -18,13 +19,13 @@
 .modal__content {
   background-color: #ffff;
   border-radius: 20px;
-  max-width: 496px;
-  max-height: 436px;
+  max-width: 430px;
+  max-height: 457px;
   width: 100%;
   box-sizing: border-box;
   position: relative;
-  padding: 28px 28px 36px;
-  overflow: hidden;
+  padding: 36px;
+  overflow: visible;
 }
 
 .modal__form {
@@ -39,6 +40,7 @@
 
 .modal__label {
   width: 100%;
+  color: #2f71e5;
 }
 
 .modal__label_type_radio {
@@ -59,12 +61,12 @@
 
 .modal__close-btn {
   position: absolute;
-  top: 20px;
-  right: 28px;
+  top: -46px;
+  right: -46px;
   background-color: transparent;
   border: none;
-  width: 16px;
-  height: 16px;
+  width: 40px;
+  height: 40px;
 }
 
 .modal__close-btn:hover {
@@ -101,12 +103,22 @@
   gap: 8px;
 }
 
+.modal__buttons-container {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
 .modal__submit-btn {
-  margin: 32px 0 0;
-  padding: 8px 16px;
-  background: #0000004d;
-  color: #ffff;
-  border-radius: 4px;
+  margin: 39px 0 0;
+  padding: 8p;
+  width: 100%;
+  height: 64px;
+  background: #e6e8eb;
+  color: #b6bcbf;
+  border-radius: 100px;
   border: none;
 }
 
@@ -115,12 +127,17 @@
 }
 
 .modal__redirect-btn {
-  margin: 32px 0 0;
-  padding: 8px 16px;
+  margin: 0;
+  padding: 0;
   background: transparent;
-  color: #00000080;
+  color: #2f71e5;
   border-radius: 4px;
   border: none;
+}
+
+.modal__redirect-btn_text {
+  color: #000;
+  padding: 5px;
 }
 
 .modal__redirect-btn:hover {

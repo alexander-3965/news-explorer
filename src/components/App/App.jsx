@@ -29,11 +29,7 @@ function App() {
   };
 
   const handleLogInClick = () => {
-    // setActiveModal("signIn");
-    // the following is for testing purposes only
-    setIsLoggedIn(true);
-    setCurrentUser({ email: "alex@email.com", name: "Alex" });
-    navigate("/saved-news");
+    setActiveModal("signIn");
   };
 
   const handleLogoutClick = () => {
@@ -81,6 +77,11 @@ function App() {
     //     }
     //   })
     //   .catch(console.error);
+    // the following is for testing purposes only
+    setIsLoggedIn(true);
+    setCurrentUser({ email: "alex@email.com", name: "Alex" });
+    navigate("/saved-news");
+    setActiveModal("");
   };
 
   const closeActiveModal = () => {
@@ -90,6 +91,17 @@ function App() {
   const handleShowMoreClick = () => {
     setNewsCount(newsCount + 3);
   };
+
+  useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+    document.addEventListener("keydown", closeByEscape);
+
+    return () => document.removeEventListener("keydown", closeByEscape);
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -141,12 +153,14 @@ function App() {
             onCloseModal={closeActiveModal}
             isOpen={activeModal === "register"}
             onRegister={onRegister}
+            handleLogInClick={handleLogInClick}
           ></RegisterModal>
 
           <SignInModal
             onCloseModal={closeActiveModal}
             isOpen={activeModal === "signIn"}
             onSignIn={onSignIn}
+            handleSignUpClick={handleSignUpClick}
           ></SignInModal>
 
           <SuccessfulRegistrationModal

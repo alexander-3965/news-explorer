@@ -25,7 +25,6 @@ function Header({
         {!isLoggedIn && (
           <div>
             <button
-              // onClick={handleSignUpClick} --- will implement later ---
               onClick={handleLogInClick}
               className="header__sign-in-button"
               type="button"

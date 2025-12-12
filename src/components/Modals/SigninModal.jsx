@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/modalWithForm";
 import { useForm } from "../Hooks/useForm";
 
-const SignInModal = ({ isOpen, onSignIn, onCloseModal }) => {
+const SignInModal = ({ isOpen, onSignIn, onCloseModal, handleSignUpClick }) => {
   const defaultValues = {
     email: "",
     password: "",
@@ -20,12 +20,13 @@ const SignInModal = ({ isOpen, onSignIn, onCloseModal }) => {
 
   return (
     <ModalWithForm
-      buttonText="Log In"
-      title="Log In"
-      redirectButtonText="or Sign Up"
+      buttonText="Sign In"
+      title="Sign In"
+      redirectButtonText="Sign Up"
       onCloseModal={onCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      onRedirect={handleSignUpClick}
     >
       <label htmlFor="email" className="modal__label">
         Email*{" "}

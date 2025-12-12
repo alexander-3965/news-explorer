@@ -1,12 +1,16 @@
 import ModalWithForm from "../ModalWithForm/modalWithForm";
 import { useForm } from "../Hooks/useForm";
 
-const RegisterModal = ({ isOpen, onRegister, onCloseModal }) => {
+const RegisterModal = ({
+  isOpen,
+  onRegister,
+  onCloseModal,
+  handleLogInClick,
+}) => {
   const defaultValues = {
     email: "",
     password: "",
     name: "",
-    avatar: "",
   };
 
   const { setValues, values, handleChange } = useForm(defaultValues);
@@ -24,10 +28,11 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal }) => {
     <ModalWithForm
       buttonText="Sign Up"
       title="Sign Up"
-      redirectButtonText="or Log In"
+      redirectButtonText="Sign In"
       onCloseModal={onCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      onRedirect={handleLogInClick}
     >
       <label htmlFor="registerEmail" className="modal__label">
         Email*{" "}
@@ -62,18 +67,6 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal }) => {
           name="name"
           placeholder="Name"
           value={values.name}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="avatar" className="modal__label">
-        Avatar URL *
-        <input
-          type="url"
-          className="modal__input"
-          id="avatar"
-          name="avatar"
-          placeholder="Avatar URL"
-          value={values.avatar}
           onChange={handleChange}
         />
       </label>

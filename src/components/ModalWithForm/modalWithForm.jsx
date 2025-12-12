@@ -6,6 +6,7 @@ function ModalWithForm({
   title,
   buttonText,
   redirectButtonText,
+  onRedirect,
   onSubmit,
   isOpen,
   onCloseModal,
@@ -27,7 +28,14 @@ function ModalWithForm({
             <button type="submit" className="modal__submit-btn">
               {buttonText}
             </button>
-            <button type="button" className="modal__redirect-btn">
+            <button
+              type="button"
+              className="modal__redirect-btn"
+              onClick={onRedirect}
+            >
+              <span className="modal__redirect-btn modal__redirect-btn_text">
+                or
+              </span>
               {redirectButtonText}
             </button>
           </div>

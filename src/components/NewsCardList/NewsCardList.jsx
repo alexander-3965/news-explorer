@@ -3,12 +3,6 @@ import NewsArticles from "../../utils/constants";
 import NewsCard from "../NewsCard/NewsCard";
 
 function NewsCardList({ handleShowMoreClick, newsCount }) {
-  //   const handleMoreClick = () => {
-  //     console.log("Show more clicked!");
-  //     newsCount += 3;
-  //     console.log(newsCount);
-  //   };
-
   return (
     <section className="cards">
       <h2 className="cards__title">Search results</h2>
