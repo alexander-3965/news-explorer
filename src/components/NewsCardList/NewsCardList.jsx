@@ -1,14 +1,13 @@
 import "./NewsCardList.css";
-import NewsArticles from "../../utils/constants";
 import NewsCard from "../NewsCard/NewsCard";
 
-function NewsCardList({ handleShowMoreClick, newsCount }) {
+function NewsCardList({ handleShowMoreClick, newsCount, newsArr }) {
   return (
     <section className="cards">
       <h2 className="cards__title">Search results</h2>
       <ul className="cards__list">
-        {NewsArticles.slice(0, newsCount).map((news) => {
-          return <NewsCard news={news} />;
+        {newsArr.slice(0, newsCount).map((news) => {
+          return <NewsCard news={news} key={news.source.id} />;
         })}
       </ul>
       <div className="cards__more-container">

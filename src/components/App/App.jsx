@@ -10,8 +10,10 @@ import ProtectedRoute from "../ProtectedRoute";
 import RegisterModal from "../Modals/RegisterModal";
 import SignInModal from "../Modals/SigninModal";
 import SuccessfulRegistrationModal from "../Modals/SuccesfulRegistrationModal";
+import { NewsArticles } from "../../utils/constants";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import About from "../About/About";
+import { apiKey } from "../../utils/constants";
+import { getNews, processNewsData } from "../../utils/NewsApi";
 
 function App() {
   const [activeModal, setActiveModal] = useState(" ");
@@ -20,7 +22,9 @@ function App() {
     name: "Alex",
   });
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [newsArr, setNewsArr] = useState([]);
   const [newsCount, setNewsCount] = useState(3);
+  const [isSearching, setIsSearching] = useState(false);
 
   const navigate = useNavigate();
 
@@ -88,6 +92,16 @@ function App() {
     setActiveModal("");
   };
 
+  const onSearch = (keyword) => {
+    setNewsArr([]);
+    setIsSearching(true);
+
+    return getNews(keyword, apiKey).then(({ articles }) => {
+      const processedNews = processNewsData(articles);
+      setNewsArr(processedNews);
+    });
+  };
+
   const handleShowMoreClick = () => {
     setNewsCount(newsCount + 3);
   };
@@ -120,7 +134,10 @@ function App() {
                 <Main
                   isLoggedIn={isLoggedIn}
                   handleShowMoreClick={handleShowMoreClick}
+                  newsArr={newsArr}
                   newsCount={newsCount}
+                  onSearch={onSearch}
+                  isSearching={isSearching}
                 />
               }
             />

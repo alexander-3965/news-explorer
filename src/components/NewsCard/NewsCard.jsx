@@ -1,5 +1,4 @@
 import "./NewsCard.css";
-import NewsArticles from "../../utils/constants";
 import bookmarkIcon from "../../assets/bookmark.svg";
 
 const handleBookmarkClick = () => {

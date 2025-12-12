@@ -1,7 +1,21 @@
 import "./searchForm.css";
 import backgroundImage from "../../assets/NE-top-section-bg.jpg";
+import { useForm } from "../Hooks/useForm";
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
+  const defaultValues = { keyword: "" };
+
+  const { setValues, values, handleChange } = useForm(defaultValues);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    onSearch(values)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <section className="search-form">
       <img
@@ -17,13 +31,21 @@ function SearchForm() {
         </p>
       </div>
       <form className="search-form__form" noValidate>
+        <label htmlFor="SearchTopic" className="search-form__label"></label>
         <input
           type="text"
           className="search-form__input"
+          id="SearchTopic"
+          name="keyword"
           placeholder="Enter Topic"
+          onChange={handleChange}
           required
         />
-        <button type="submit" className="search-form__button">
+        <button
+          type="submit"
+          className="search-form__button"
+          onClick={handleSubmit}
+        >
           Search
         </button>
       </form>

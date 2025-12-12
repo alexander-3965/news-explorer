@@ -1,4 +1,4 @@
-const NewsArticles = [
+export const NewsArticles = [
   {
     source: {
       id: "the-verge",
@@ -201,4 +201,4 @@ const NewsArticles = [
   },
 ];
 
-export default NewsArticles;
+export const apiKey = "7fa1581578004c8bba113a35a2f14ae6";
