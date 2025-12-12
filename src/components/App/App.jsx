@@ -96,10 +96,12 @@ function App() {
     setNewsArr([]);
     setIsSearching(true);
 
-    return getNews(keyword, apiKey).then(({ articles }) => {
-      const processedNews = processNewsData(articles);
-      setNewsArr(processedNews).catch((err) => console.error(err));
-    });
+    return getNews(keyword, apiKey)
+      .then(({ articles }) => {
+        const processedNews = processNewsData(articles);
+        setNewsArr(processedNews);
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleShowMoreClick = () => {

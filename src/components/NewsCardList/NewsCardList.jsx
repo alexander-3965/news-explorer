@@ -2,6 +2,8 @@ import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
 
 function NewsCardList({ handleShowMoreClick, newsCount, newsArr }) {
+  const hasMoreNews = newsCount < newsArr.length;
+
   return (
     <section className="cards">
       <h2 className="cards__title">Search results</h2>
@@ -11,9 +13,11 @@ function NewsCardList({ handleShowMoreClick, newsCount, newsArr }) {
         })}
       </ul>
       <div className="cards__more-container">
-        <button className="cards__more-btn" onClick={handleShowMoreClick}>
-          Show more
-        </button>
+        {hasMoreNews && (
+          <button className="cards__more-btn" onClick={handleShowMoreClick}>
+            Show more
+          </button>
+        )}
       </div>
     </section>
   );
