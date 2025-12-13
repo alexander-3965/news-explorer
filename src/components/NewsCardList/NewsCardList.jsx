@@ -1,7 +1,13 @@
 import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
 
-function NewsCardList({ handleShowMoreClick, newsCount, newsArr }) {
+function NewsCardList({
+  handleShowMoreClick,
+  newsCount,
+  newsArr,
+  isLoggedIn,
+  handleLogInClick,
+}) {
   const hasMoreNews = newsCount < newsArr.length;
 
   return (
@@ -9,7 +15,14 @@ function NewsCardList({ handleShowMoreClick, newsCount, newsArr }) {
       <h2 className="cards__title">Search results</h2>
       <ul className="cards__list">
         {newsArr.slice(0, newsCount).map((news) => {
-          return <NewsCard news={news} key={news.source.id} />;
+          return (
+            <NewsCard
+              isLoggedIn={isLoggedIn}
+              news={news}
+              key={news.source.id}
+              handleLogInClick={handleLogInClick}
+            />
+          );
         })}
       </ul>
       <div className="cards__more-container">

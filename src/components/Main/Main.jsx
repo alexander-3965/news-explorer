@@ -6,6 +6,7 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 
 function Main({
+  isLoggedIn,
   handleShowMoreClick,
   newsCount,
   onSearch,
@@ -13,6 +14,7 @@ function Main({
   isSearching,
   isLoading,
   notFound,
+  handleLogInClick,
 }) {
   return (
     <main className="main">
@@ -24,6 +26,8 @@ function Main({
           handleShowMoreClick={handleShowMoreClick}
           newsCount={newsCount}
           newsArr={newsArr}
+          isLoggedIn={isLoggedIn}
+          handleLogInClick={handleLogInClick}
         />
       )}
 

@@ -105,17 +105,20 @@ function App() {
 
     Promise.all([getNews(keyword, apiKey), timeoutPromise, emptyNewsArrPromise])
       .then((response) => {
+        console.log(response);
         const processedNews = processNewsData(response[0].articles);
         setNewsArr(processedNews);
+        debugger;
+        if (processedNews.length === 0) {
+          setNotFound(true);
+        }
       })
       .catch((err) => console.error(err))
       .finally(() => {
         setIsLoading(false);
-        if (newsArr.length === 0) {
-          setNotFound(true);
-          return;
+        if (!notFound) {
+          setIsSearching(true);
         }
-        setIsSearching(true);
       });
   };
 
@@ -157,6 +160,7 @@ function App() {
                   isSearching={isSearching}
                   isLoading={isLoading}
                   notFound={notFound}
+                  handleLogInClick={handleLogInClick}
                 />
               }
             />

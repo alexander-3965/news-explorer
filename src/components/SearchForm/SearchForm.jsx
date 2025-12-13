@@ -11,7 +11,6 @@ function SearchForm({ onSearch }) {
     evt.preventDefault();
     onSearch(values)
       .then((data) => {
-        setValues(defaultValues);
         console.log(data);
       })
       .catch((err) => console.error(err));

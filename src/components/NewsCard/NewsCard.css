@@ -47,13 +47,38 @@
   margin: 0;
 }
 
-.news-card__bookmark {
+.news-card__bookmark-container {
+  display: flex;
+  gap: 5px;
   position: absolute;
   top: 24px;
   right: 24px;
+}
+
+.signin-btn {
+  opacity: 0;
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  color: #000;
+  background-color: #ffffff;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 10px;
+  border: none;
+  padding: 11px 20px;
+  height: 40px;
+  width: 100%;
+  max-width: 182px;
+}
+
+.news-card__bookmark {
   background-color: #ffffff;
   border: none;
   width: 40px;
   height: 40px;
   border-radius: 8px;
+}
+
+.news-card__bookmark-container:hover .signin-btn {
+  cursor: pointer;
+  opacity: 1;
 }
