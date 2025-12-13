@@ -1,8 +1,9 @@
-import React from "react";
 import "./Main.css";
 import SearchForm from "../SearchForm/searchForm";
 import About from "../About/About";
 import NewsCardList from "../NewsCardList/NewsCardList";
+import Preloader from "../Preloader/Preloader";
+import NothingFound from "../NothingFound/NothingFound";
 
 function Main({
   handleShowMoreClick,
@@ -10,10 +11,14 @@ function Main({
   onSearch,
   newsArr,
   isSearching,
+  isLoading,
+  notFound,
 }) {
   return (
     <main className="main">
       <SearchForm onSearch={onSearch} />
+      {isLoading && <Preloader />}
+      {notFound && <NothingFound />}
       {isSearching && (
         <NewsCardList
           handleShowMoreClick={handleShowMoreClick}

@@ -10,7 +10,6 @@ import ProtectedRoute from "../ProtectedRoute";
 import RegisterModal from "../Modals/RegisterModal";
 import SignInModal from "../Modals/SigninModal";
 import SuccessfulRegistrationModal from "../Modals/SuccesfulRegistrationModal";
-import { NewsArticles } from "../../utils/constants";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { apiKey } from "../../utils/constants";
 import { getNews, processNewsData } from "../../utils/NewsApi";
@@ -25,6 +24,8 @@ function App() {
   const [newsArr, setNewsArr] = useState([]);
   const [newsCount, setNewsCount] = useState(3);
   const [isSearching, setIsSearching] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   const navigate = useNavigate();
 
@@ -43,25 +44,25 @@ function App() {
     navigate("/");
   };
 
-  const onRegister = (user) => {
-    // return signUp(user)
-    //   .then((data) => {
-    //     return signIn({ email: user.email, password: user.password });
-    //   })
-    //   .then((loginData) => {
-    //     localStorage.setItem("jwt", loginData.token);
-    //     setIsLoggedIn(true);
-    //     return getUserInfo(loginData.token);
-    //   })
-    //   .then((userInfo) => {
-    //     setCurrentUser(userInfo);
-    //     closeActiveModal();
-    //     navigate("/");
-    //   })
-    //   .catch(console.error);
-  };
+  // const onRegister = (user) => {
+  // return signUp(user)
+  //   .then((data) => {
+  //     return signIn({ email: user.email, password: user.password });
+  //   })
+  //   .then((loginData) => {
+  //     localStorage.setItem("jwt", loginData.token);
+  //     setIsLoggedIn(true);
+  //     return getUserInfo(loginData.token);
+  //   })
+  //   .then((userInfo) => {
+  //     setCurrentUser(userInfo);
+  //     closeActiveModal();
+  //     navigate("/");
+  //   })
+  //   .catch(console.error);
+  // };
 
-  const onSignIn = (user) => {
+  const onSignIn = () => {
     // return signIn(user)
     //   .then((data) => {
     //     getUserInfo(data.token).then(({ name, avatar, _id }) => {
@@ -92,16 +93,30 @@ function App() {
     setActiveModal("");
   };
 
-  const onSearch = (keyword) => {
-    setNewsArr([]);
-    setIsSearching(true);
+  const onSearch = async (keyword) => {
+    setIsLoading(true);
+    setIsSearching(false);
+    setNotFound(false);
 
-    return getNews(keyword, apiKey)
-      .then(({ articles }) => {
-        const processedNews = processNewsData(articles);
+    const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 3000));
+    const emptyNewsArrPromise = new Promise((resolve) =>
+      resolve(setNewsArr([]))
+    );
+
+    Promise.all([getNews(keyword, apiKey), timeoutPromise, emptyNewsArrPromise])
+      .then((response) => {
+        const processedNews = processNewsData(response[0].articles);
         setNewsArr(processedNews);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => {
+        setIsLoading(false);
+        if (newsArr.length === 0) {
+          setNotFound(true);
+          return;
+        }
+        setIsSearching(true);
+      });
   };
 
   const handleShowMoreClick = () => {
@@ -140,6 +155,8 @@ function App() {
                   newsCount={newsCount}
                   onSearch={onSearch}
                   isSearching={isSearching}
+                  isLoading={isLoading}
+                  notFound={notFound}
                 />
               }
             />
@@ -169,7 +186,7 @@ function App() {
           <RegisterModal
             onCloseModal={closeActiveModal}
             isOpen={activeModal === "register"}
-            onRegister={onRegister}
+            // onRegister={onRegister}
             handleLogInClick={handleLogInClick}
           ></RegisterModal>
 

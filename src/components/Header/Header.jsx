@@ -1,18 +1,14 @@
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import Navigation from "../Navigation/Navigation";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import logoutIcon from "../../assets/logout.svg";
 import logoutIconWhite from "../../assets/logout-white.svg";
 
-function Header({
-  isLoggedIn,
-  handleSignUpClick,
-  handleLogoutClick,
-  handleLogInClick,
-}) {
+function Header({ isLoggedIn, handleLogoutClick, handleLogInClick }) {
   const currentUser = useContext(CurrentUserContext);
+  const location = useLocation();
 
   return (
     <header className="header">
@@ -41,7 +37,7 @@ function Header({
           >
             <p className="header__username">{currentUser.name}</p>
             <img
-              src={logoutIconWhite}
+              src={location.pathname === "/" ? logoutIconWhite : logoutIcon}
               alt="Logout Icon"
               className="header__logout-icon"
             />

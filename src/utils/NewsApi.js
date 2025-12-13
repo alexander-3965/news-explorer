@@ -1,3 +1,8 @@
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://nomoreparties.co/news/v2/everything"
+    : "https://newsapi.org/v2/everything";
+
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
@@ -27,6 +32,6 @@ export const processNewsData = (data) => {
 
 export const getNews = ({ keyword }, apiKey) => {
   return fetch(
-    `https://newsapi.org/v2/everything?q=${keyword}&from=${formattedDate}&to=${weekBefore}&pageSize=${pageSize}&apiKey=${apiKey}`
+    `${baseUrl}?q=${keyword}&from=${formattedDate}&to=${weekBefore}&pageSize=${pageSize}&apiKey=${apiKey}`
   ).then(checkResponse);
 };
