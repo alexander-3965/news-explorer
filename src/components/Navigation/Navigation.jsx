@@ -1,9 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./navigation.css";
 
 function Navigation({ isLoggedIn }) {
+  const location = useLocation();
+
   const linkClass = ({ isActive }) =>
-    isActive ? "navigation__link navigation__link--active" : "navigation__link";
+    isActive
+      ? `navigation__link navigation__link--active${
+          location.pathname === "/" ? "-white" : "-dark"
+        }`
+      : "navigation__link";
 
   return (
     <nav className="navigation">

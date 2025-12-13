@@ -11,9 +11,19 @@ function Header({ isLoggedIn, handleLogoutClick, handleLogInClick }) {
   const location = useLocation();
 
   return (
-    <header className="header">
-      <Link to="/" className="header__logo header__logo_link">
-        <p className="header__logo"> NewsExplorer </p>
+    <header
+      className={`header ${
+        location.pathname === "/" ? "" : "header header--dark"
+      }`}
+    >
+      <Link to="/" className=" header__logo header__logo_link">
+        <p
+          className={`header__logo ${
+            location.pathname === "/" ? "" : "header__logo--dark"
+          }`}
+        >
+          NewsExplorer
+        </p>
       </Link>
 
       <div className="header__user-container">
@@ -33,9 +43,17 @@ function Header({ isLoggedIn, handleLogoutClick, handleLogInClick }) {
           <button
             onClick={handleLogoutClick}
             type="button"
-            className="header__logout-button"
+            className={`header__logout-button ${
+              location.pathname === "/" ? "" : "header__logout-button--dark"
+            }`}
           >
-            <p className="header__username">{currentUser.name}</p>
+            <p
+              className={`header__username ${
+                location.pathname === "/" ? "" : "header__username--dark"
+              }`}
+            >
+              {currentUser.name}
+            </p>
             <img
               src={location.pathname === "/" ? logoutIconWhite : logoutIcon}
               alt="Logout Icon"
