@@ -11,8 +11,9 @@ import RegisterModal from "../Modals/RegisterModal";
 import SignInModal from "../Modals/SigninModal";
 import SuccessfulRegistrationModal from "../Modals/SuccesfulRegistrationModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { apiKey } from "../../utils/constants";
+import { apiKey, NewsArticles } from "../../utils/constants";
 import { getNews, processNewsData } from "../../utils/NewsApi";
+import { getItems } from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState(" ");
@@ -26,6 +27,7 @@ function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const [bookmarkedNews, setBookmarkedNews] = useState(NewsArticles);
 
   const navigate = useNavigate();
 
@@ -126,6 +128,14 @@ function App() {
   };
 
   useEffect(() => {
+    getItems()
+      .then((data) => {
+        setBookmarkedNews(data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
     const closeByEscape = (e) => {
       if (e.key === "Escape") {
         closeActiveModal();
@@ -169,7 +179,7 @@ function App() {
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <SavedNews
                     isLoggedIn={isLoggedIn}
-                    handleLogoutClick={handleLogoutClick}
+                    bookmarkedNews={bookmarkedNews}
                   />
                 </ProtectedRoute>
               }

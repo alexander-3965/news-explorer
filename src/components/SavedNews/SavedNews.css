@@ -1,1 +1,39 @@
+.saved {
+}
 
+.saved__text {
+  background-color: #fff;
+  padding: 40px 104px;
+}
+
+.saved__eyebrow {
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b2280;
+  margin: 0;
+}
+
+.saved__title {
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+}
+
+.saved__subtitle {
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.saved__subtitle_keywords {
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.cards__list {
+  padding: 62px 102px;
+}
