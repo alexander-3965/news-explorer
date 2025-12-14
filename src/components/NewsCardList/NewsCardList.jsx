@@ -19,7 +19,7 @@ function NewsCardList({
             <NewsCard
               isLoggedIn={isLoggedIn}
               news={news}
-              key={news.source.id}
+              key={news.url}
               handleLogInClick={handleLogInClick}
             />
           );

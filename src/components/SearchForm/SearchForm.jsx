@@ -9,11 +9,7 @@ function SearchForm({ onSearch }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onSearch(values)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => console.error(err));
+    onSearch(values);
   };
 
   return (

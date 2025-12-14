@@ -108,7 +108,6 @@ function App() {
         console.log(response);
         const processedNews = processNewsData(response[0].articles);
         setNewsArr(processedNews);
-        debugger;
         if (processedNews.length === 0) {
           setNotFound(true);
         }
