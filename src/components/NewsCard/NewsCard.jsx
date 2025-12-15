@@ -1,11 +1,14 @@
 import "./NewsCard.css";
-import bookmarkIcon from "../../assets/bookmark.svg";
+import { useLocation } from "react-router-dom";
+// import bookmarkIcon from "../../assets/bookmark.svg";
 
-const handleBookmarkClick = () => {
-  console.log("Bookmark clicked!");
-};
+function NewsCard({ news, isLoggedIn, icon, popupText }) {
+  const location = useLocation();
 
-function NewsCard({ news, isLoggedIn, handleLogInClick }) {
+  const handleBookmarkClick = () => {
+    console.log("Bookmark clicked!");
+  };
+
   return (
     <div className="news-card">
       <img
@@ -13,22 +16,22 @@ function NewsCard({ news, isLoggedIn, handleLogInClick }) {
         alt={news.title}
         className="news-card__image"
       />
-      <div className="news-card__bookmark-container">
-        {!isLoggedIn && (
-          <button
-            className="signin-btn"
-            type="button"
-            onClick={handleLogInClick}
-          >
-            Sign in to save article
+      <div className="news-card__btn-container">
+        {(!isLoggedIn || location.pathname === "/saved-news") && (
+          <button className="popup-btn" type="button">
+            {popupText}
           </button>
         )}
         <button
-          className="news-card__bookmark"
+          className="news-card__btn"
           type="button"
           onClick={handleBookmarkClick}
         >
-          <img src={bookmarkIcon} alt="bookmark icon" />
+          <img
+            src={icon}
+            alt={icon.substring(icon.lastIndexOf("/"), icon.lastIndexOf("."))}
+            className="news-card__icon"
+          />
         </button>
       </div>
       <div className="news-card__content">

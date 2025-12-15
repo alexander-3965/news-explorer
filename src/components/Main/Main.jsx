@@ -27,7 +27,6 @@ function Main({
           newsCount={newsCount}
           newsArr={newsArr}
           isLoggedIn={isLoggedIn}
-          handleLogInClick={handleLogInClick}
         />
       )}
 

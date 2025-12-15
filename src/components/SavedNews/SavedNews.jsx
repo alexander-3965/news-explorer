@@ -2,6 +2,7 @@ import "./savedNews.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 import NewsCard from "../NewsCard/NewsCard";
+import trashIcon from "../../assets/trash.svg";
 
 function SavedNews({ isLoggedIn, bookmarkedNews }) {
   const currentUser = useContext(CurrentUserContext);
@@ -28,7 +29,13 @@ function SavedNews({ isLoggedIn, bookmarkedNews }) {
         <ul className="cards__list">
           {bookmarkedNews.map((news) => {
             return (
-              <NewsCard isLoggedIn={isLoggedIn} news={news} key={news.url} />
+              <NewsCard
+                isLoggedIn={isLoggedIn}
+                news={news}
+                key={news.url}
+                icon={trashIcon}
+                popupText={"Remove from saved"}
+              />
             );
           })}
         </ul>
