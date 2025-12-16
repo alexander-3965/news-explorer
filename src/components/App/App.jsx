@@ -14,12 +14,13 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { apiKey, NewsArticles } from "../../utils/constants";
 import { getNews, processNewsData } from "../../utils/NewsApi";
 import { getItems } from "../../utils/api";
+import { authorize, checkToken, setToken, signUp } from "../../utils/auth";
 
 function App() {
   const [activeModal, setActiveModal] = useState(" ");
   const [currentUser, setCurrentUser] = useState({
-    email: "alex@email.com",
-    name: "Alex",
+    email: "",
+    name: "",
   });
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [newsArr, setNewsArr] = useState([]);
@@ -41,54 +42,59 @@ function App() {
 
   const handleLogoutClick = () => {
     setIsLoggedIn(false);
-    // setCurrentUser({ email: "", name: "" });
-    // setToken("");
+    setCurrentUser({ email: "", name: "" });
+    setToken("");
     navigate("/");
   };
 
-  // const onRegister = (user) => {
-  // return signUp(user)
-  //   .then((data) => {
-  //     return signIn({ email: user.email, password: user.password });
-  //   })
-  //   .then((loginData) => {
-  //     localStorage.setItem("jwt", loginData.token);
-  //     setIsLoggedIn(true);
-  //     return getUserInfo(loginData.token);
-  //   })
-  //   .then((userInfo) => {
-  //     setCurrentUser(userInfo);
-  //     closeActiveModal();
-  //     navigate("/");
-  //   })
-  //   .catch(console.error);
-  // };
+  const onRegister = (user) => {
+    return (
+      signUp(user)
+        //   .then((data) => {
+        //     return signIn({ email: user.email, password: user.password });
+        //   })
+        //   .then((loginData) => {
+        //     localStorage.setItem("jwt", loginData.token);
+        //     setIsLoggedIn(true);
+        //     return getUserInfo(loginData.token);
+        //   })
+        .then((userInfo) => {
+          console.log("user info", userInfo);
+          setCurrentUser(userInfo);
+          setIsLoggedIn(true);
+          closeActiveModal();
+          navigate("/saved-news");
+        })
+        .catch(console.error)
+    );
+  };
 
-  const onSignIn = () => {
-    // return signIn(user)
-    //   .then((data) => {
-    //     getUserInfo(data.token).then(({ name, avatar, _id }) => {
-    //       setCurrentUser({
-    //         name: name,
-    //         avatar: avatar,
-    //         _id: _id,
-    //       });
-    //     });
-    //     setIsLoggedIn(true);
-    //     closeActiveModal();
-    //     if (data.token) {
-    //       setToken(data.token);
-    //       setTimeout(() => {
-    //         return navigate("/");
-    //       }, 0);
-    //     }
-    //   })
-    //   .catch(console.error);
+  const onSignIn = (user) => {
+    return authorize(user)
+      .then((data) => {
+        checkToken(data.token).then(({ name, email, _id }) => {
+          console.log("info", name, email, _id);
+          setCurrentUser({
+            name: name,
+            email: email,
+            _id: _id,
+          });
+        });
+        setIsLoggedIn(true);
+        closeActiveModal();
+        if (data.token) {
+          setToken(data.token);
+          setTimeout(() => {
+            return navigate("/saved-news");
+          }, 0);
+        }
+      })
+      .catch(console.error);
     // the following is for testing purposes only
-    setIsLoggedIn(true);
-    setCurrentUser({ email: "alex@email.com", name: "Alex" });
-    navigate("/saved-news");
-    setActiveModal("");
+    // setIsLoggedIn(true);
+    // setCurrentUser({ email: "alex@email.com", name: "Alex" });
+    // navigate("/saved-news");
+    // setActiveModal("");
   };
 
   const closeActiveModal = () => {
@@ -199,7 +205,7 @@ function App() {
           <RegisterModal
             onCloseModal={closeActiveModal}
             isOpen={activeModal === "register"}
-            // onRegister={onRegister}
+            onRegister={onRegister}
             handleLogInClick={handleLogInClick}
           ></RegisterModal>
 
