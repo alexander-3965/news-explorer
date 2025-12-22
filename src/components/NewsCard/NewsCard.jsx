@@ -1,12 +1,25 @@
 import "./NewsCard.css";
 import { useLocation } from "react-router-dom";
-// import bookmarkIcon from "../../assets/bookmark.svg";
 
-function NewsCard({ news, isLoggedIn, icon, popupText }) {
+function NewsCard({
+  news,
+  isLoggedIn,
+  icon,
+  activeIcon,
+  popupText,
+  onSaveItem,
+  onDeleteItem,
+}) {
   const location = useLocation();
+  const isSaved = news.isSaved;
 
-  const handleBookmarkClick = () => {
-    console.log("Bookmark clicked!");
+  const handleIconClick = () => {
+    console.log("icon clicked!");
+    if (onSaveItem) {
+      onSaveItem(news, news.url);
+    } else if (onDeleteItem) {
+      onDeleteItem(news);
+    }
   };
 
   return (
@@ -25,11 +38,14 @@ function NewsCard({ news, isLoggedIn, icon, popupText }) {
         <button
           className="news-card__btn"
           type="button"
-          onClick={handleBookmarkClick}
+          onClick={handleIconClick}
         >
           <img
-            src={icon}
-            alt={icon.substring(icon.lastIndexOf("/"), icon.lastIndexOf("."))}
+            src={isSaved ? activeIcon : icon}
+            alt={activeIcon.substring(
+              activeIcon.lastIndexOf("/"),
+              activeIcon.lastIndexOf(".")
+            )}
             className="news-card__icon"
           />
         </button>

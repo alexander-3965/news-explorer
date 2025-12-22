@@ -13,7 +13,7 @@ import SuccessfulRegistrationModal from "../Modals/SuccesfulRegistrationModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { apiKey, NewsArticles } from "../../utils/constants";
 import { getNews, processNewsData } from "../../utils/NewsApi";
-import { getItems } from "../../utils/api";
+import { getItems, saveArticle, savedItems } from "../../utils/api";
 import { authorize, checkToken, setToken, signUp } from "../../utils/auth";
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [bookmarkedNews, setBookmarkedNews] = useState(NewsArticles);
+  // to simulate saved back end
 
   const navigate = useNavigate();
 
@@ -113,9 +114,10 @@ function App() {
 
     Promise.all([getNews(keyword, apiKey), timeoutPromise, emptyNewsArrPromise])
       .then((response) => {
-        console.log(response);
+        console.log("on Search res", response);
         const processedNews = processNewsData(response[0].articles);
         setNewsArr(processedNews);
+        setNewsCount(3);
         if (processedNews.length === 0) {
           setNotFound(true);
         }
@@ -131,6 +133,22 @@ function App() {
 
   const handleShowMoreClick = () => {
     setNewsCount(newsCount + 3);
+  };
+
+  const onSaveItem = (article, key) => {
+    console.log("onSaveItem", article);
+    saveArticle(article)
+      .then((res) => {
+        setNewsArr((news) =>
+          news.map((item) => (item.url === key ? savedItems[res - 1] : item))
+        );
+        console.log("res", savedItems[res - 1]);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const onDeleteItem = (article) => {
+    console.log("item to be deleted", article);
   };
 
   useEffect(() => {
@@ -176,6 +194,7 @@ function App() {
                   isLoading={isLoading}
                   notFound={notFound}
                   handleLogInClick={handleLogInClick}
+                  onSaveItem={onSaveItem}
                 />
               }
             />
@@ -186,6 +205,7 @@ function App() {
                   <SavedNews
                     isLoggedIn={isLoggedIn}
                     bookmarkedNews={bookmarkedNews}
+                    onDeleteItem={onDeleteItem}
                   />
                 </ProtectedRoute>
               }

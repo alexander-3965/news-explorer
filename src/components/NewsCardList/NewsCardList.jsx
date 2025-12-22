@@ -1,8 +1,15 @@
 import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
 import bookmarkIcon from "../../assets/bookmark.svg";
+import blueBookmarkIcon from "../../assets/activeBookmark(blue).svg";
 
-function NewsCardList({ handleShowMoreClick, newsCount, newsArr, isLoggedIn }) {
+function NewsCardList({
+  handleShowMoreClick,
+  newsCount,
+  newsArr,
+  isLoggedIn,
+  onSaveItem,
+}) {
   const hasMoreNews = newsCount < newsArr.length;
 
   return (
@@ -12,7 +19,9 @@ function NewsCardList({ handleShowMoreClick, newsCount, newsArr, isLoggedIn }) {
         {newsArr.slice(0, newsCount).map((news) => {
           return (
             <NewsCard
+              onSaveItem={onSaveItem}
               icon={bookmarkIcon}
+              activeIcon={blueBookmarkIcon}
               isLoggedIn={isLoggedIn}
               news={news}
               key={news.url}

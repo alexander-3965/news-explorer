@@ -14,7 +14,8 @@ function Main({
   isSearching,
   isLoading,
   notFound,
-  handleLogInClick,
+  onSaveItem,
+  onDeleteItem,
 }) {
   return (
     <main className="main">
@@ -27,6 +28,8 @@ function Main({
           newsCount={newsCount}
           newsArr={newsArr}
           isLoggedIn={isLoggedIn}
+          onSaveItem={onSaveItem}
+          onDeleteItem={onDeleteItem}
         />
       )}
 

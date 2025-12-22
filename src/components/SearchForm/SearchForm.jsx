@@ -5,7 +5,7 @@ import { useForm } from "../Hooks/useForm";
 function SearchForm({ onSearch }) {
   const defaultValues = { keyword: "" };
 
-  const { setValues, values, handleChange } = useForm(defaultValues);
+  const { values, handleChange } = useForm(defaultValues);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

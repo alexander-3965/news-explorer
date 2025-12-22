@@ -4,13 +4,12 @@ import { useContext } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import trashIcon from "../../assets/trash.svg";
 
-function SavedNews({ isLoggedIn, bookmarkedNews }) {
+function SavedNews({ isLoggedIn, bookmarkedNews, onDeleteItem }) {
   const currentUser = useContext(CurrentUserContext);
   const keywords = [];
-  const bookmarkedNewsKeywords = bookmarkedNews.slice(0, 2).map((news) => {
+  bookmarkedNews.slice(0, 2).map((news) => {
     keywords.push(news.keyword);
   });
-
   return (
     <div className="saved">
       <div className="saved__text">
@@ -33,8 +32,9 @@ function SavedNews({ isLoggedIn, bookmarkedNews }) {
                 isLoggedIn={isLoggedIn}
                 news={news}
                 key={news.url}
-                icon={trashIcon}
+                activeIcon={trashIcon}
                 popupText={"Remove from saved"}
+                onDeleteItem={onDeleteItem}
               />
             );
           })}
