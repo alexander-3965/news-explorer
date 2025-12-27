@@ -13,7 +13,12 @@ import SuccessfulRegistrationModal from "../Modals/SuccesfulRegistrationModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { apiKey, NewsArticles } from "../../utils/constants";
 import { getNews, processNewsData } from "../../utils/NewsApi";
-import { getItems, saveArticle, savedItems } from "../../utils/api";
+import {
+  getItems,
+  saveArticle,
+  savedItems,
+  removeArticle,
+} from "../../utils/api";
 import { authorize, checkToken, setToken, signUp } from "../../utils/auth";
 
 function App() {
@@ -149,6 +154,7 @@ function App() {
 
   const onDeleteItem = (article) => {
     console.log("item to be deleted", article);
+    removeArticle(article);
   };
 
   useEffect(() => {

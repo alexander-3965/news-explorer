@@ -59,3 +59,9 @@ export function saveArticle(article) {
     );
   });
 }
+
+export function removeArticle(article) {
+  return new Promise((resolve, reject) => {
+    resolve(savedItems.filter((news) => news.url !== article.url));
+  });
+}
