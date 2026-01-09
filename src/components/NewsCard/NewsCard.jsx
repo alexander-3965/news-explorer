@@ -11,7 +11,12 @@ function NewsCard({
   onDeleteItem,
 }) {
   const location = useLocation();
+
   const isSaved = news.isSaved;
+
+  const datePublished = new Date(news.publishedAt);
+
+  const dateOptions = { month: "long", day: "numeric", year: "numeric" };
 
   const handleIconClick = () => {
     console.log("icon clicked!");
@@ -35,6 +40,9 @@ function NewsCard({
             {popupText}
           </button>
         )}
+        {(news.keyword || location.pathname === "/saved-news") && (
+          <button className="news-card__keyword">{news.keyword}</button>
+        )}
         <button
           className="news-card__btn"
           type="button"
@@ -50,12 +58,18 @@ function NewsCard({
           />
         </button>
       </div>
-      <div className="news-card__content">
-        <p className="news-card__date">{news.publishedAt}</p>
-        <h3 className="news-card__title">{news.title}</h3>
-        <p className="news-card__description">{news.description}</p>
-        <p className="news-card__source">{news.source.name}</p>
-      </div>
+      <a className="news-card__link" href={news.url} target="_blank">
+        <div className="news-card__content">
+          <p className="news-card__date">
+            {new Intl.DateTimeFormat("en-us", dateOptions).format(
+              datePublished
+            )}
+          </p>
+          <h3 className="news-card__title">{news.title}</h3>
+          <p className="news-card__description">{news.description}</p>
+          <p className="news-card__source">{news.source.name}</p>
+        </div>
+      </a>
     </div>
   );
 }

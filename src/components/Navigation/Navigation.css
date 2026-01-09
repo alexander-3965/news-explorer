@@ -52,3 +52,17 @@
 .navigation__link:hover {
   color: #ffffff66;
 }
+
+@media screen and (max-width: 768px) {
+  .navigation {
+    gap: 50px;
+  }
+
+  .navigation__link {
+    font-size: 16px;
+  }
+
+  .navigation__link--active-white::after {
+    top: calc(100% + 20px);
+  }
+}

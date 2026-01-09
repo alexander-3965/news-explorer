@@ -1,7 +1,7 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 30px 104px 26px;
+  padding: 30px 7% 26px;
   height: 80px;
   box-sizing: border-box;
   justify-content: space-between;
@@ -43,13 +43,6 @@
   z-index: 1;
 }
 
-.header__date-location {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-}
-
 .header__sign-in-button {
   margin: 0 104px 0 0;
   border: solid 1px #ffffff;
@@ -64,9 +57,20 @@
   padding: 6px 20px;
 }
 
-.header__add-clothes-button:hover {
-  color: #00000099;
-  cursor: pointer;
+.header__navigation {
+  display: none;
+}
+
+.header__lines {
+  background-color: transparent;
+  border: none;
+  border-bottom: 8px double white;
+  width: 16px;
+  margin: 16px 16px 20px;
+}
+
+.header__lines--dark {
+  border-bottom: 8px double black;
 }
 
 .header__user-container {
@@ -108,4 +112,37 @@
   width: 24px;
   height: 24px;
   padding: 12px 12px 12px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 22px 7% 20px;
+    height: 66px;
+  }
+
+  .header__user-container {
+    gap: 45px;
+  }
+
+  .header__logout-button {
+    height: 40px;
+  }
+
+  .header__username {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .header__logo {
+    font-size: 16px;
+  }
+
+  .header__user-container {
+    display: none;
+  }
+
+  .header__navigation {
+    display: block;
+  }
 }

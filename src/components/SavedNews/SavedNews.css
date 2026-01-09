@@ -35,3 +35,33 @@
   background-color: #f5f6f7;
   padding: 80px 104px;
 }
+
+@media screen and (max-width: 768px) {
+  .saved__text {
+    padding: 24px 40px 32px;
+  }
+
+  .saved__eyebrow {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .saved__title {
+    font-size: 30px;
+    margin: 0 0 16px 0;
+  }
+
+  .saved__subtitle {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .saved__cards {
+    padding: 8px 16px 32px 16px;
+  }
+
+  .saved__eyebrow {
+    font-size: 12px;
+  }
+}

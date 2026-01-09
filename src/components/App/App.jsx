@@ -10,6 +10,7 @@ import ProtectedRoute from "../ProtectedRoute";
 import RegisterModal from "../Modals/RegisterModal";
 import SignInModal from "../Modals/SigninModal";
 import SuccessfulRegistrationModal from "../Modals/SuccesfulRegistrationModal";
+import NavigationModal from "../Modals/NavigationModal/NavigationModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { apiKey, NewsArticles } from "../../utils/constants";
 import { getNews, processNewsData } from "../../utils/NewsApi";
@@ -37,6 +38,10 @@ function App() {
   // to simulate saved back end
 
   const navigate = useNavigate();
+
+  const handleNavigationClick = () => {
+    setActiveModal("navigation");
+  };
 
   const handleSignUpClick = () => {
     setActiveModal("register");
@@ -185,6 +190,7 @@ function App() {
             handleSignUpClick={handleSignUpClick}
             handleLogInClick={handleLogInClick}
             handleLogoutClick={handleLogoutClick}
+            handleNavigationClick={handleNavigationClick}
           />
           <Routes>
             <Route
@@ -227,6 +233,14 @@ function App() {
               }
             />
           </Routes>
+
+          <NavigationModal
+            isLoggedIn={isLoggedIn}
+            isOpen={activeModal === "navigation"}
+            handleLogInClick={handleLogInClick}
+            onCloseModal={closeActiveModal}
+            handleLogoutClick={handleLogoutClick}
+          ></NavigationModal>
 
           <RegisterModal
             onCloseModal={closeActiveModal}

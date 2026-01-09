@@ -151,3 +151,17 @@
 .modal__error {
   color: red;
 }
+
+@media screen and (max-width: 425px) {
+  .modal {
+    top: 65px;
+  }
+
+  .modal__content {
+    max-height: none;
+    height: 576px;
+  }
+  .modal__submit-btn {
+    margin: 0;
+  }
+}

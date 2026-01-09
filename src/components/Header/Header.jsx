@@ -6,7 +6,12 @@ import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import logoutIcon from "../../assets/logout.svg";
 import logoutIconWhite from "../../assets/logout-white.svg";
 
-function Header({ isLoggedIn, handleLogoutClick, handleLogInClick }) {
+function Header({
+  isLoggedIn,
+  handleLogoutClick,
+  handleLogInClick,
+  handleNavigationClick,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const location = useLocation();
 
@@ -25,7 +30,15 @@ function Header({ isLoggedIn, handleLogoutClick, handleLogInClick }) {
           NewsExplorer
         </p>
       </Link>
-
+      <div className="header__navigation">
+        <button
+          type="button"
+          className={`header__lines ${
+            location.pathname === "/" ? "" : "header__lines--dark"
+          }`}
+          onClick={handleNavigationClick}
+        ></button>
+      </div>
       <div className="header__user-container">
         <Navigation isLoggedIn={isLoggedIn} />
         {!isLoggedIn && (

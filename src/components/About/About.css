@@ -1,9 +1,9 @@
 .about-section {
   display: flex;
   justify-content: space-around;
-  margin: 80px 104px;
+  align-items: center;
+  margin: 5%;
   gap: 56px;
-  max-height: 624px;
 }
 
 .about-section__content {
@@ -24,9 +24,35 @@
 }
 
 .about-section__image {
-  max-width: 464px;
-  max-height: 464px;
   border-radius: 50%;
-  width: 100%;
+  width: 33%;
+  height: 33%;
   aspect-ratio: 1 / 1;
+}
+
+@media screen and (max-width: 700px) {
+  .about-section__image {
+    width: 84%;
+    height: 84%;
+  }
+
+  .about-section {
+    flex-direction: column;
+    padding: 32px 24px;
+  }
+
+  .about-section__title {
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .about-section {
+    margin: 0;
+  }
+
+  .about-section__image {
+    width: 99%;
+  }
 }
