@@ -1,0 +1,148 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 30px 7% 26px;
+  height: 80px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  border-bottom: solid 1px #ffffff33;
+  position: relative;
+  z-index: 1;
+}
+
+.header--dark {
+  border-bottom: solid 1px #1a1b22;
+}
+
+.header__logo {
+  font-family: "roboto-slab", Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  line-height: 24px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+
+.header__logo--dark {
+  color: #1a1b22;
+  font-family: "roboto-slab", Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+  line-height: 24px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+
+.header__logo_link {
+  text-decoration: none;
+  z-index: 1;
+}
+
+.header__sign-in-button {
+  margin: 0 104px 0 0;
+  border: solid 1px #ffffff;
+  color: #ffffff;
+  font-size: 16px;
+  max-width: 176px;
+  width: 100%;
+  font-weight: 500;
+  background: transparent;
+  line-height: 24px;
+  border-radius: 100px;
+  padding: 6px 20px;
+}
+
+.header__navigation {
+  display: none;
+}
+
+.header__lines {
+  background-color: transparent;
+  border: none;
+  border-bottom: 8px double white;
+  width: 16px;
+  margin: 16px 16px 20px;
+}
+
+.header__lines--dark {
+  border-bottom: 8px double black;
+}
+
+.header__user-container {
+  display: flex;
+  align-items: center;
+  gap: 76px;
+}
+
+.header__logout-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 100px;
+  border: solid 1px #fff;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header__logout-button--dark {
+  border: solid 1px #1a1b22;
+}
+
+.header__username {
+  margin: 0;
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  padding: 12px 0 12px 12px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.header__username--dark {
+  color: #1a1b22;
+}
+
+.header__logout-icon {
+  width: 24px;
+  height: 24px;
+  padding: 12px 12px 12px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 22px 7% 20px;
+    height: 66px;
+  }
+
+  .header__user-container {
+    gap: 45px;
+  }
+
+  .header__logout-button {
+    height: 40px;
+  }
+
+  .header__username {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .header__logo {
+    font-size: 16px;
+  }
+
+  .header__user-container {
+    display: none;
+  }
+
+  .header__navigation {
+    display: block;
+  }
+}

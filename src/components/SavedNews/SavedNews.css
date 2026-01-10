@@ -1,0 +1,67 @@
+.saved__text {
+  background-color: #fff;
+  padding: 40px 104px;
+}
+
+.saved__eyebrow {
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b2280;
+  margin: 0;
+}
+
+.saved__title {
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+}
+
+.saved__subtitle {
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.saved__subtitle_keywords {
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.saved__cards {
+  background-color: #f5f6f7;
+  padding: 80px 104px;
+}
+
+@media screen and (max-width: 768px) {
+  .saved__text {
+    padding: 24px 40px 32px;
+  }
+
+  .saved__eyebrow {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .saved__title {
+    font-size: 30px;
+    margin: 0 0 16px 0;
+  }
+
+  .saved__subtitle {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .saved__cards {
+    padding: 8px 16px 32px 16px;
+  }
+
+  .saved__eyebrow {
+    font-size: 12px;
+  }
+}
